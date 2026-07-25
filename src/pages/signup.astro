@@ -1,4 +1,6 @@
+---
 // src/pages/signup.astro
+
 let message = "";
 
 if (Astro.request.method === "POST") {
@@ -16,9 +18,11 @@ if (Astro.request.method === "POST") {
         
         message = "সফলভাবে সাইন-আপ হয়েছে!";
     } catch (e) {
+        console.error(e); // লগ দেখতে সুবিধা হবে
         message = "এরর: ডাটা সেভ হয়নি। টেবিল ঠিক আছে তো?";
     }
 }
+---
 
 <html lang="en">
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
