@@ -1,50 +1,19 @@
 ---
-import { buttonVariants } from '@/components/ui/button';
-import { Github, LayoutDashboard } from 'lucide-react';
-import '@/styles/globals.css'
-
-const repoLink = 'https://github.com/cloudflare/templates/tree/main/saas-admin-template';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<script is:inline>
-  const getThemePreference = () => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  };
-  const isDark = getThemePreference() === 'dark';
-  document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
- 
-  if (typeof localStorage !== 'undefined') {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-  }
-</script>
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>FlyTripVisa - Admin</title>
-  </head>
-  <body>
-    <div class="flex flex-col items-center justify-center gap-4 py-20 px-8">
-      <h1 class="text-5xl font-bold">SaaS Admin Template</h1>
-      <p class="text-xl text-muted-foreground">Manage a SaaS application - customers, subscriptions - using Cloudflare Workers and D1.</p>
-      <div class="flex flex gap-4 mt-4">
-        <a class={buttonVariants()} href="/admin">
-          <LayoutDashboard /> Go to admin
-        </a>
-        <a class={buttonVariants({ variant: 'outline' })} href={repoLink}>
-          <Github /> View on GitHub
-        </a>
+<Layout title="Home - Fly Trip Visa">
+  <div class="flex flex-col items-center justify-center gap-4 py-20 px-8">
+    <h1 class="text-5xl font-bold">SaaS Admin Template</h1>
+    <p class="text-xl text-muted-foreground text-center">Manage a SaaS application - customers, subscriptions - using Cloudflare Workers and D1.</p>
+    
+    <div class="flex gap-4 mt-4">
+      <a class="px-6 py-2 bg-black text-white rounded" href="/admin">
+        Go to admin
+      </a>
+      <a class="px-6 py-2 border border-black rounded" href="https://github.com/cloudflare/templates/tree/main/saas-admin-template" target="_blank">
+        View on GitHub
+      </a>
     </div>
-  </body>
-</html>
+  </div>
+</Layout>
