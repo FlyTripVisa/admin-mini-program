@@ -1,5 +1,5 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { SubscriptionService } from '@/lib/services/subscription';
 import { CreateSubscriptionButton } from '@/components/admin/create-subscription';
 import { SubscriptionsTable } from '@/components/admin/subscriptions-table';
@@ -10,15 +10,18 @@ const subscriptions = await subscriptionService.getAll();
 ---
 
 <Layout title="Subscriptions">
-  {subscriptions.length ? (
-    <SubscriptionsTable data={subscriptions} />
-  ) : (
-    <p class="font-medium text-muted-foreground">
-      No subscriptions yet. Try creating one using the API or by selecting "Create New Subscription" above.
-    </p>
-  )}
-
-  <div slot="actions">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-3xl font-bold tracking-tight">Manage Subscriptions</h2>
     <CreateSubscriptionButton apiToken={API_TOKEN} client:only="react" />
+  </div>
+
+  <div class="mt-4">
+    {subscriptions.length ? (
+      <SubscriptionsTable data={subscriptions} client:only="react" />
+    ) : (
+      <p class="font-medium text-muted-foreground p-8 text-center">
+        No subscriptions yet. Try creating one using the API or by selecting "Create New Subscription" above.
+      </p>
+    )}
   </div>
 </Layout>
