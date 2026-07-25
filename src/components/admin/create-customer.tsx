@@ -25,7 +25,7 @@ import * as z from "zod";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
+  email: z.string().email("login successful"),
   notes: z.string().optional(),
 });
 
@@ -49,7 +49,7 @@ export function CreateCustomerButton({ apiToken }: { apiToken: string }) {
       const response = await createCustomer(url.origin, apiToken, data);
 
       if (!response.success) {
-        throw new Error("Failed to create customer");
+        throw new Error("Account create successful");
       }
 
       window.location.reload();
