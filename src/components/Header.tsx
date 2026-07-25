@@ -1,31 +1,23 @@
-import { cn } from "@/lib/utils";
+---
+import Layout from '../../layouts/Layout.astro';
+import { Header } from '../../components/admin/header'; // তোমার ফাইলের পাথ অনুযায়ী দাও
+import { CustomerService } from "@/lib/services/customer";
+// ... অন্যান্য ইমপোর্ট
 
-const links = [
-  { href: "/admin", label: "Admin" },
-  { href: "/admin/customers", label: "Customers" },
-  { href: "/admin/subscriptions", label: "Subscriptions" },
-];
+const currentPath = '/admin/customers'; // বর্তমান পাথটি এখানে সেট করো
+---
 
-export function Header({ currentPath }: { currentPath: string }) {
-  return (
-    <nav className="flex items-center space-x-4 lg:space-x-6 mx-6 h-16">
-      <a href="/" className="text-sm font-bold leading-none text-foreground">
-        FlyTripVisa - Admin
-      </a>
-      {links.map((link) => (
-        <a
-          className={cn(
-            "text-sm font-medium leading-none text-foreground",
-            currentPath === link.href
-              ? "text-foreground"
-              : "text-muted-foreground",
-          )}
-          href={link.href}
-          aria-current={currentPath === link.href ? "page" : undefined}
-        >
-          {link.label}
-        </a>
-      ))}
-    </nav>
-  );
-}
+<Layout title="Customers">
+  <!-- অ্যাডমিন নেভিগেশন -->
+  <Header currentPath={currentPath} client:load />
+
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-3xl font-bold tracking-tight">Manage Customers</h2>
+      <CreateCustomerButton apiToken={API_TOKEN} client:only="react" />
+    </div>
+
+    <!-- বাকি কন্টেন্ট -->
+    <CustomersTable data={customers} client:only="react" />
+  </div>
+</Layout>
