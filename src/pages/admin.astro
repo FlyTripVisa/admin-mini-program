@@ -1,6 +1,7 @@
 ---
 import { BadgeDollarSign, CalendarSync, User } from 'lucide-react';
 import Layout from '../layouts/Layout.astro';
+import { Header } from '@/components/admin/header';
 import { APIDocumentation } from '@/components/admin/api-documentation';
 
 import { CustomerService } from '@/lib/services/customer';
@@ -25,7 +26,9 @@ const data = [
 ---
 
 <Layout title="Admin Dashboard">
-  <div class="space-y-8">
+  <Header client:load currentPath={Astro.url.pathname} />
+
+  <div class="space-y-8 p-6">
     <!-- Stats Grid -->
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4">
       {data.map((item) => (
