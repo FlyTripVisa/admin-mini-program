@@ -23,7 +23,7 @@
   "workflows": [
     {
       "name": "saas-admin-template-customer-workflow",
-      "binding": "CUSTOMER_WORKFLOW",
+      "binding": "admin",
       "class_name": "CustomerWorkflow"
     }
   ]
