@@ -4,5 +4,6 @@ declare namespace App {
   interface Locals extends Runtime {
     CUSTOMER_WORKFLOW: Workflow;
     DB: D1Database;
+    R2: R2Bucket;
   }
 }
