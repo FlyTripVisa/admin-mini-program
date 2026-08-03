@@ -2,7 +2,7 @@
 	"name": "admin-mini-program",
 	"description": "Admin dashboard template built with Astro, shadcn/ui, and Cloudflare's developer stack",
 	"cloudflare": {
-		"label": "SaaS Admin Template",
+		"label": "FlyTripVisa 😈 Admin",
 		"products": [
 			"Workers",
 			"D1"
